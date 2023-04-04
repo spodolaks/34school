@@ -9,8 +9,8 @@ def gridTraveler(n, m):
 
 
 # Test the function
-n = 14
-m = 14
+n = 16
+m = 16
 
 # Start the timer
 start_time = time.time()
