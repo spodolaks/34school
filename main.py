@@ -1,19 +1,24 @@
-import hashlib
-import base64
-from Crypto.PublicKey import RSA
+import time
 
-# Load public key
-pubkey_str = """-----BEGIN PUBLIC KEY-----
-MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJcINDJ8k5+dCh5AHbg0vimO0cT6GV10
-w/NKurLCOmiQEkvEq455IJo5P2TktoXm/w6nwMq+CSjILhwG6mA4QUMCAwEAAQ==
------END PUBLIC KEY-----"""
-pubkey = RSA.import_key(pubkey_str)
+def gridTraveler(n, m):
+    if (n == 1 and m == 1): 
+        return 1
+    if (n == 0 or m == 0):
+        return 0
+    return gridTraveler(n - 1, m) + gridTraveler(n, m-1)
 
-# Encode messagegit 
-message = b"sp@innovatio.lv"
-hash_object = hashlib.sha256(message)
-hash_value = int.from_bytes(hash_object.digest(), byteorder='big')
-encoded = pow(hash_value, pubkey.e, pubkey.n)
 
-# Print encoded message
-print(encoded)
+# Test the function
+n = 14
+m = 14
+
+# Start the timer
+start_time = time.time()
+
+result = gridTraveler(n,m)
+
+# Calculate the elapsed time in milliseconds
+elapsed_time_ms = (time.time() - start_time) * 1000
+
+print(f"For {n} by {m} grid number of ways: {result}")
+print(f"Execution time: {elapsed_time_ms:.2f} ms")
